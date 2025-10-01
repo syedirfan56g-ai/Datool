@@ -225,5 +225,169 @@
       <p>© 2025 Datools. All rights reserved. | Created by <strong>Syed Afnan SAV</strong></p>
     </div>
   </footer>
+  <!-- Draggable AI Chatbot -->
+<div id="ai-circle">🤖</div>
+
+<div id="chatbot-box">
+  <div id="chatbot-header">AI Assistant</div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-area">
+    <input type="text" id="chatbot-input" placeholder="Type your question...">
+    <button id="chatbot-send">➤</button>
+  </div>
+</div>
+
+<style>
+/* Floating draggable circle */
+#ai-circle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg,#6a0dad,#9370db);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: grab;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  user-select: none;
+}
+
+/* Chatbot box */
+#chatbot-box {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  height: 400px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1001;
+}
+#chatbot-header {
+  background: linear-gradient(45deg,#6a0dad,#9370db);
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+#chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+  background: #f9f9f9;
+}
+.message {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+.user { background: #6a0dad; color: #fff; margin-left: auto; }
+.bot { background: #eee; color: #333; margin-right: auto; }
+#chatbot-input-area {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+#chatbot-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+#chatbot-send {
+  background: #6a0dad;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+</style>
+
+<script>
+const GAMINI_API_KEY = "AIzaSyBKDvji0XAr0OG4UOm5vNVEelLd5giVods"; // 🔑 Apna Gamini API key yahan dalna hai
+
+// Toggle chatbot on circle click
+document.getElementById("ai-circle").onclick = () => {
+  const box = document.getElementById("chatbot-box");
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+};
+
+// Send message
+document.getElementById("chatbot-send").onclick = sendMessage;
+document.getElementById("chatbot-input").addEventListener("keypress", e => {
+  if(e.key === "Enter") sendMessage();
+});
+
+async function sendMessage(){
+  const input = document.getElementById("chatbot-input");
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  addMessage(msg, "user");
+  input.value = "";
+
+  addMessage("Thinking...", "bot");
+
+  try {
+    const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+GAMINI_API_KEY, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: msg }] }]
+      })
+    });
+
+    const data = await res.json();
+    document.querySelector("#chatbot-messages .bot:last-child").innerText = 
+      data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
+  } catch(err){
+    document.querySelector("#chatbot-messages .bot:last-child").innerText = "Error: "+err.message;
+  }
+}
+
+function addMessage(text, sender){
+  const msgBox = document.createElement("div");
+  msgBox.className = "message " + sender;
+  msgBox.innerText = text;
+  document.getElementById("chatbot-messages").appendChild(msgBox);
+  document.getElementById("chatbot-messages").scrollTop = document.getElementById("chatbot-messages").scrollHeight;
+}
+
+// Make circle draggable
+const circle = document.getElementById("ai-circle");
+let isDragging = false, offsetX, offsetY;
+
+circle.addEventListener("mousedown", e => {
+  isDragging = true;
+  offsetX = e.clientX - circle.getBoundingClientRect().left;
+  offsetY = e.clientY - circle.getBoundingClientRect().top;
+  circle.style.cursor = "grabbing";
+});
+document.addEventListener("mousemove", e => {
+  if(!isDragging) return;
+  circle.style.left = (e.clientX - offsetX) + "px";
+  circle.style.top = (e.clientY - offsetY) + "px";
+  circle.style.bottom = "auto";
+  circle.style.right = "auto";
+  circle.style.position = "fixed";
+});
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  circle.style.cursor = "grab";
+});
+</script>
+
 </body>
 </html>
