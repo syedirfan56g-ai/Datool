@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datools - Education & Finance Calculators</title>
+  <meta name="description" content="Datools offers easy-to-use education and finance calculators like Loan, ERA, AP Score, Crosswind, and more. Created by Syed Afnan SAV.">
+  <link rel="canonical" href="https://datools.site/" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Datools</h1>
+    <nav>
+      <a href="#">Login</a>
+      <a href="#">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Welcome to Datools</h2>
+    <p>Fast & easy calculators for Education and Finance.<br>Created by <strong>Syed Afnan SAV</strong>.</p>
+  </section>
+
+  <!-- Tools Grid -->
+  <section class="tools">
+    <h2>Our Calculators</h2>
+    <div class="grid">
+      <!-- Education -->
+      <a class="tool-card" href="era-calculator.html">ERA Calculator</a>
+      <a class="tool-card" href="ap-bio-score-calculator.html">AP Bio Score Calculator</a>
+      <a class="tool-card" href="ap-chem-score-calculator.html">AP Chem Score Calculator</a>
+      <a class="tool-card" href="crosswind-calculator.html">Crosswind Calculator</a>
+      <a class="tool-card" href="mit-living-wage-calculator.html">MIT Living Wage Calculator</a>
+      <!-- Finance -->
+      <a class="tool-card" href="car-loan-payoff-calculator.html">Car Loan Payoff Calculator</a>
+      <a class="tool-card" href="401k-loan-calculator.html">401k Loan Calculator</a>
+      <a class="tool-card" href="construction-loan-calculator.html">Construction Loan Calculator</a>
+      <a class="tool-card" href="auto-loan-early-payoff-calculator.html">Auto Loan Early Payoff Calculator</a>
+      <a class="tool-card" href="dscr-loan-calculator.html">DSCR Loan Calculator</a>
+    </div>
+  </section>
+
+  <!-- How To Use -->
+  <section class="section">
+    <h2>How to Use</h2>
+    <p>Choose a tool, enter your values, and click calculate. Example:</p>
+    <img src="images/howto-example.jpg" alt="How to use calculator" />
+  </section>
+
+  <!-- About -->
+  <section class="section">
+    <h2>About</h2>
+    <p>Datools provides free, accurate, and easy-to-use calculators for students and finance professionals.</p>
+  </section>
+
+  <!-- Privacy -->
+  <section class="section">
+    <h2>Privacy Policy</h2>
+    <p>No personal data is stored. We respect your privacy.</p>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="section">
+    <h2>Disclaimer</h2>
+    <p>All calculators provide estimates only. Consult professionals for decisions.</p>
+  </section>
+
+  <!-- Blogs -->
+  <section class="section">
+    <h2>Blogs</h2>
+    <p>Read more on our <a href="https://datoolsblogs.blogspot.com/" target="_blank">Datools Blog</a>.</p>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <h2>Contact</h2>
+    <p>Email us at <a href="mailto:support@datools.site">support@datools.site</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Datools. Created by Syed Afnan SAV.</p>
+    <p><a href="https://datoolsblogs.blogspot.com/" target="_blank">Visit our Blog</a></p>
+  </footer>
+
+  <!-- Chatbot -->
+  <div class="chat-toggle" onclick="toggleChat()">💬</div>
+  <div class="chatbot" id="chatbot">
+    <div class="chat-header">Ask Datools Bot</div>
+    <div class="chat-body" id="chat-body"></div>
+    <div class="chat-input">
+      <input type="text" id="chat-input" placeholder="Ask a question...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
