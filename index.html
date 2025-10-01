@@ -1,102 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datools - Education & Finance Calculators</title>
-  <meta name="description" content="Datools offers easy-to-use education and finance calculators like Loan, ERA, AP Score, Crosswind, and more. Created by Syed Afnan SAV.">
-  <link rel="canonical" href="https://datools.site/" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datools — Education & Finance Tools</title>
+  <meta name="description" content="Datools provides fast, free, and accurate calculators for education and finance students, professionals, and learners.">
+  <meta name="author" content="Datools">
+  <link rel="canonical" href="https://datools.site/">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
+    body {background:#fff; color:#333; line-height:1.6;}
+
+    /* HEADER */
+    header {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:15px 30px;
+      background:linear-gradient(90deg,#4b0082,#9370db);
+      color:#fff;
+      position:sticky; top:0; z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    }
+    .logo {font-size:1.8rem; font-weight:bold; letter-spacing:1px;}
+    nav {display:flex; gap:20px;}
+    nav a {
+      text-decoration:none; color:#fff; font-size:1rem;
+      padding:6px 12px; border-radius:6px; transition:0.3s;
+    }
+    nav a:hover {background:#fff; color:#4b0082; transform:translateY(-2px);}
+    .auth-btns {display:flex; gap:15px;}
+    .auth-btns button {
+      padding:10px 18px; font-size:1rem;
+      border:none; border-radius:30px;
+      cursor:pointer; font-weight:bold;
+      background:#fff; color:#4b0082;
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
+      transition:all 0.4s ease;
+    }
+    .auth-btns button:hover {
+      background:#9370db; color:#fff;
+      transform:scale(1.1) rotate(-2deg);
+    }
+
+    /* HERO */
+    .hero {
+      text-align:center; padding:100px 20px;
+      background:linear-gradient(135deg,#4b0082,#9370db);
+      color:#fff;
+    }
+    .hero h1 {font-size:3rem; margin-bottom:15px;}
+    .hero p {font-size:1.3rem; margin-bottom:25px;}
+    .hero .cta {
+      background:#fff; color:#4b0082;
+      padding:14px 26px; border-radius:30px;
+      font-size:1.1rem; font-weight:bold;
+      text-decoration:none; display:inline-block;
+      transition:0.3s;
+    }
+    .hero .cta:hover {background:#333; color:#fff;}
+
+    /* TOOLS GRID */
+    .tools {padding:60px 30px; max-width:1200px; margin:auto;}
+    .tools h2 {text-align:center; margin-bottom:40px; font-size:2rem; color:#4b0082;}
+    .grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+    .tool-card {
+      background:#f9f9f9; border-radius:15px; padding:20px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1); transition:0.3s;
+    }
+    .tool-card:hover {transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+    .tool-card h3 {margin-bottom:10px; color:#4b0082;}
+    .tool-card a {
+      display:inline-block; margin-top:10px;
+      padding:8px 14px; background:#4b0082; color:#fff;
+      text-decoration:none; border-radius:20px; font-size:0.9rem;
+      transition:0.3s;
+    }
+    .tool-card a:hover {background:#9370db;}
+
+    /* FOOTER */
+    footer {background:#2e004f; color:#fff; padding:50px 30px 20px; margin-top:50px;}
+    .footer-container {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:30px; max-width:1200px; margin:auto;
+    }
+    .footer-col h3 {margin-bottom:15px; font-size:1.2rem; color:#9370db;}
+    .footer-col ul {list-style:none;}
+    .footer-col ul li {margin-bottom:8px;}
+    .footer-col ul li a {color:#ddd; text-decoration:none; font-size:0.95rem; transition:0.3s;}
+    .footer-col ul li a:hover {color:#fff; padding-left:5px;}
+    .footer-bottom {
+      text-align:center; border-top:1px solid rgba(255,255,255,0.2);
+      margin-top:30px; padding-top:15px; font-size:0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- HEADER -->
   <header>
-    <h1>Datools</h1>
+    <div class="logo">Datools</div>
     <nav>
-      <a href="#">Login</a>
-      <a href="#">Sign Up</a>
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Disclaimer</a>
+      <a href="https://datoolsblogs.blogspot.com/" target="_blank">Blogs</a>
+      <a href="#">Contact</a>
     </nav>
+    <div class="auth-btns">
+      <button>Login</button>
+      <button>Sign Up</button>
+    </div>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <section class="hero">
-    <h2>Welcome to Datools</h2>
-    <p>Fast & easy calculators for Education and Finance.<br>Created by <strong>Syed Afnan SAV</strong>.</p>
+    <h1>Datools — Smart Education & Finance Tools</h1>
+    <p>Free, fast & accurate calculators for students and finance professionals.</p>
+    <a href="#tools" class="cta">Explore Tools</a>
   </section>
 
-  <!-- Tools Grid -->
-  <section class="tools">
-    <h2>Our Calculators</h2>
+  <!-- TOOLS GRID -->
+  <section class="tools" id="tools">
+    <h2>Our Top Tools</h2>
     <div class="grid">
       <!-- Education -->
-      <a class="tool-card" href="era-calculator.html">ERA Calculator</a>
-      <a class="tool-card" href="ap-bio-score-calculator.html">AP Bio Score Calculator</a>
-      <a class="tool-card" href="ap-chem-score-calculator.html">AP Chem Score Calculator</a>
-      <a class="tool-card" href="crosswind-calculator.html">Crosswind Calculator</a>
-      <a class="tool-card" href="mit-living-wage-calculator.html">MIT Living Wage Calculator</a>
+      <div class="tool-card">
+        <h3>ERA Calculator</h3>
+        <p>Easy Earned Run Average calculator for students & sports.</p>
+        <a href="era-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>AP Bio Score Calculator</h3>
+        <p>Estimate your AP Biology exam score instantly.</p>
+        <a href="ap-bio-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>AP Chem Score Calculator</h3>
+        <p>Predict AP Chemistry exam scores.</p>
+        <a href="ap-chem-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>Crosswind Calculator</h3>
+        <p>Calculate wind components for aviation training.</p>
+        <a href="crosswind-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>MIT Living Wage Calculator</h3>
+        <p>Check living wage data for MIT regions.</p>
+        <a href="mit-wage-calculator.html">Use Tool</a>
+      </div>
       <!-- Finance -->
-      <a class="tool-card" href="car-loan-payoff-calculator.html">Car Loan Payoff Calculator</a>
-      <a class="tool-card" href="401k-loan-calculator.html">401k Loan Calculator</a>
-      <a class="tool-card" href="construction-loan-calculator.html">Construction Loan Calculator</a>
-      <a class="tool-card" href="auto-loan-early-payoff-calculator.html">Auto Loan Early Payoff Calculator</a>
-      <a class="tool-card" href="dscr-loan-calculator.html">DSCR Loan Calculator</a>
+      <div class="tool-card">
+        <h3>Car Loan Payoff Calculator</h3>
+        <p>Estimate early car loan payoff and savings.</p>
+        <a href="car-loan-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>401k Loan Calculator</h3>
+        <p>Calculate repayments for 401k loans.</p>
+        <a href="401k-loan-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>Construction Loan Calculator</h3>
+        <p>Check affordability of construction projects.</p>
+        <a href="construction-loan-calculator.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>Auto Loan Early Payoff Calculator</h3>
+        <p>Plan early repayments for auto loans.</p>
+        <a href="auto-loan-payoff.html">Use Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>DSCR Loan Calculator</h3>
+        <p>Debt Service Coverage Ratio calculator.</p>
+        <a href="dscr-loan-calculator.html">Use Tool</a>
+      </div>
     </div>
   </section>
 
-  <!-- How To Use -->
-  <section class="section">
-    <h2>How to Use</h2>
-    <p>Choose a tool, enter your values, and click calculate. Example:</p>
-    <img src="images/howto-example.jpg" alt="How to use calculator" />
-  </section>
-
-  <!-- About -->
-  <section class="section">
-    <h2>About</h2>
-    <p>Datools provides free, accurate, and easy-to-use calculators for students and finance professionals.</p>
-  </section>
-
-  <!-- Privacy -->
-  <section class="section">
-    <h2>Privacy Policy</h2>
-    <p>No personal data is stored. We respect your privacy.</p>
-  </section>
-
-  <!-- Disclaimer -->
-  <section class="section">
-    <h2>Disclaimer</h2>
-    <p>All calculators provide estimates only. Consult professionals for decisions.</p>
-  </section>
-
-  <!-- Blogs -->
-  <section class="section">
-    <h2>Blogs</h2>
-    <p>Read more on our <a href="https://datoolsblogs.blogspot.com/" target="_blank">Datools Blog</a>.</p>
-  </section>
-
-  <!-- Contact -->
-  <section class="section">
-    <h2>Contact</h2>
-    <p>Email us at <a href="mailto:support@datools.site">support@datools.site</a></p>
-  </section>
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Datools. Created by Syed Afnan SAV.</p>
-    <p><a href="https://datoolsblogs.blogspot.com/" target="_blank">Visit our Blog</a></p>
-  </footer>
-
-  <!-- Chatbot -->
-  <div class="chat-toggle" onclick="toggleChat()">💬</div>
-  <div class="chatbot" id="chatbot">
-    <div class="chat-header">Ask Datools Bot</div>
-    <div class="chat-body" id="chat-body"></div>
-    <div class="chat-input">
-      <input type="text" id="chat-input" placeholder="Ask a question...">
-      <button onclick="sendMessage()">Send</button>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Learn More</h3>
+        <ul>
+          <li><a href="#tools">All Features</a></li>
+          <li><a href="#tools">Education Tools</a></li>
+          <li><a href="#tools">Finance Tools</a></li>
+          <li><a href="#tools">Free Calculators</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Help & FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="https://datoolsblogs.blogspot.com/" target="_blank">Blog</a></li>
+          <li><a href="#">Guides & Tutorials</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Free Templates</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Partnerships</a></li>
+          <li><a href="#">Press & Media</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-
-  <script src="script.js"></script>
+    <div class="footer-bottom">
+      <p>© 2025 Datools. All rights reserved. | Created by <strong>Syed Afnan SAV</strong></p>
+    </div>
+  </footer>
 </body>
 </html>
