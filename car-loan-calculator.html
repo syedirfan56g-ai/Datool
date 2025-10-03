@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Loan Calculator - Calculate Auto Loan Payments | Free Tool</title>
+    <meta name="description" content="Calculate car loan payments instantly. Input loan amount, interest rate, and term to get accurate monthly payments and total costs for your auto loan.">
+    <meta name="keywords" content="car loan calculator, auto loan calculator, vehicle loan calculator, monthly payment calculator, car finance calculator, auto finance">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="car-loan-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="car-loan-calculator.html">
+    <meta property="og:title" content="Car Loan Calculator - Calculate Auto Loan Payments">
+    <meta property="og:description" content="Calculate car loan payments instantly. Get accurate monthly payments and total costs for your auto loan.">
+    <meta property="og:image" content="images/car-loan-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="car-loan-calculator.html">
+    <meta property="twitter:title" content="Car Loan Calculator - Calculate Auto Loan Payments">
+    <meta property="twitter:description" content="Calculate car loan payments instantly with our free auto loan calculator.">
+    <meta property="twitter:image" content="images/car-loan-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Car Loan Calculator",
+      "description": "Calculate car loan payments instantly with our free auto loan calculator",
+      "url": "car-loan-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Car Loan Calculator</h1>
+            <p>Calculate monthly payments and total cost for auto loans</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="carLoanForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="loanAmount">Loan Amount ($)</label>
+                        <input type="number" id="loanAmount" step="100" min="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interestRate">Annual Interest Rate (%)</label>
+                        <input type="number" id="interestRate" step="0.01" min="0" max="30" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="loanTerm">Loan Term (years)</label>
+                        <select id="loanTerm" required>
+                            <option value="">Select...</option>
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5">5 years</option>
+                            <option value="6">6 years</option>
+                            <option value="7">7 years</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="downPayment">Down Payment ($)</label>
+                        <input type="number" id="downPayment" step="100" min="0" value="0">
+                    </div>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Payment</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="monthlyPayment">$0</div>
+                        <div class="result-item-label">Monthly Payment</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="totalInterest">$0</div>
+                        <div class="result-item-label">Total Interest</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="totalCost">$0</div>
+                        <div class="result-item-label">Total Cost</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter the <strong>Loan Amount</strong> you need to borrow</li>
+                <li>Input the <strong>Annual Interest Rate</strong> offered by the lender</li>
+                <li>Select the <strong>Loan Term</strong> (number of years to repay)</li>
+                <li>Enter any <strong>Down Payment</strong> you plan to make (optional)</li>
+                <li>Click <strong>Calculate Payment</strong> to see your results</li>
+                <li>Review monthly payment, total interest, and total cost</li>
+                <li>Compare different scenarios to find the best loan terms</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('carLoanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const loanAmount = validatePositiveNumber(document.getElementById('loanAmount').value, 'Loan Amount');
+                const interestRate = validateNumber(document.getElementById('interestRate').value, 'Interest Rate');
+                const loanTerm = validatePositiveNumber(document.getElementById('loanTerm').value, 'Loan Term');
+                const downPayment = validateNumber(document.getElementById('downPayment').value || '0', 'Down Payment');
+                
+                if (interestRate < 0 || interestRate > 30) throw new Error('Interest rate must be between 0-30%');
+                if (downPayment < 0) throw new Error('Down payment cannot be negative');
+                if (downPayment >= loanAmount) throw new Error('Down payment cannot be greater than loan amount');
+                
+                const principal = loanAmount - downPayment;
+                
+                // Calculate monthly payment using loan formula
+                const monthlyPayment = calculateMonthlyPayment(principal, interestRate, loanTerm);
+                const totalPayments = monthlyPayment * loanTerm * 12;
+                const totalInterest = totalPayments - principal;
+                const totalCost = totalPayments + downPayment;
+                
+                document.getElementById('monthlyPayment').textContent = formatCurrency(monthlyPayment);
+                document.getElementById('totalInterest').textContent = formatCurrency(totalInterest);
+                document.getElementById('totalCost').textContent = formatCurrency(totalCost);
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

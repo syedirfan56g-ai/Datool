@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERA Calculator - Calculate Baseball Earned Run Average | Free Online Tool</title>
+    <meta name="description" content="Calculate baseball ERA (Earned Run Average) instantly with our free online calculator. Input earned runs and innings pitched to get accurate ERA statistics for players and teams.">
+    <meta name="keywords" content="ERA calculator, earned run average, baseball statistics, pitcher stats, baseball ERA, sports calculator, baseball tools">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="era-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="era-calculator.html">
+    <meta property="og:title" content="ERA Calculator - Calculate Baseball Earned Run Average">
+    <meta property="og:description" content="Calculate baseball ERA (Earned Run Average) instantly with our free online calculator. Perfect for coaches, players, and baseball enthusiasts.">
+    <meta property="og:image" content="images/era-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="era-calculator.html">
+    <meta property="twitter:title" content="ERA Calculator - Calculate Baseball Earned Run Average">
+    <meta property="twitter:description" content="Calculate baseball ERA (Earned Run Average) instantly with our free online calculator.">
+    <meta property="twitter:image" content="images/era-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ERA Calculator",
+      "description": "Calculate baseball ERA (Earned Run Average) instantly with our free online calculator",
+      "url": "era-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ERA Calculator</h1>
+            <p>Calculate Earned Run Average for baseball statistics</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="eraForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="earnedRuns">Earned Runs</label>
+                        <input type="number" id="earnedRuns" step="0.1" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inningsPitched">Innings Pitched</label>
+                        <input type="number" id="inningsPitched" step="0.1" min="0.1" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate ERA</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="result-value" id="eraResult">0.00</div>
+                <div class="result-label">Earned Run Average</div>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter the total number of <strong>Earned Runs</strong> allowed by the pitcher</li>
+                <li>Enter the total <strong>Innings Pitched</strong> (can include partial innings like 6.2 for 6⅔ innings)</li>
+                <li>Click <strong>Calculate ERA</strong> to get the result</li>
+                <li>The ERA is calculated using the formula: (Earned Runs × 9) ÷ Innings Pitched</li>
+                <li>A lower ERA indicates better pitching performance</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('eraForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const earnedRuns = validateNumber(document.getElementById('earnedRuns').value, 'Earned Runs');
+                const inningsPitched = validatePositiveNumber(document.getElementById('inningsPitched').value, 'Innings Pitched');
+                
+                // Calculate ERA: (Earned Runs × 9) ÷ Innings Pitched
+                const era = (earnedRuns * 9) / inningsPitched;
+                
+                document.getElementById('eraResult').textContent = formatNumber(era, 2);
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

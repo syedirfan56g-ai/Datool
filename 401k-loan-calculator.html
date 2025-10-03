@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>401k Loan Calculator - Calculate 401k Loan Payments | Free Tool</title>
+    <meta name="description" content="Calculate 401k loan payments and costs. Input your retirement balance, loan amount, and terms to get accurate repayment schedules and understand borrowing implications.">
+    <meta name="keywords" content="401k loan calculator, retirement loan calculator, 401k borrowing, retirement fund loan, loan calculator, finance calculator">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="401k-loan-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="401k-loan-calculator.html">
+    <meta property="og:title" content="401k Loan Calculator - Calculate 401k Loan Payments">
+    <meta property="og:description" content="Calculate 401k loan payments and costs. Understand borrowing from your retirement fund with accurate calculations.">
+    <meta property="og:image" content="images/401k-loan-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="401k-loan-calculator.html">
+    <meta property="twitter:title" content="401k Loan Calculator - Calculate 401k Loan Payments">
+    <meta property="twitter:description" content="Calculate 401k loan payments and costs with our free calculator.">
+    <meta property="twitter:image" content="images/401k-loan-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "401k Loan Calculator",
+      "description": "Calculate 401k loan payments and costs with our free calculator",
+      "url": "401k-loan-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>401k Loan Calculator</h1>
+            <p>Calculate repayments and costs for 401k retirement plan loans</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="loan401kForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentBalance">Current 401k Balance ($)</label>
+                        <input type="number" id="currentBalance" step="1000" min="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loanAmount">Loan Amount ($)</label>
+                        <input type="number" id="loanAmount" step="500" min="1000" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="interestRate">Interest Rate (%)</label>
+                        <input type="number" id="interestRate" step="0.25" min="1" max="15" value="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loanTerm">Repayment Term (years)</label>
+                        <select id="loanTerm" required>
+                            <option value="">Select...</option>
+                            <option value="1">1 year</option>
+                            <option value="2">2 years</option>
+                            <option value="3">3 years</option>
+                            <option value="4">4 years</option>
+                            <option value="5">5 years</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="payFrequency">Pay Frequency</label>
+                    <select id="payFrequency" required>
+                        <option value="">Select...</option>
+                        <option value="26">Bi-weekly (26 payments/year)</option>
+                        <option value="24">Semi-monthly (24 payments/year)</option>
+                        <option value="12">Monthly (12 payments/year)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Loan</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="paymentAmount">$0</div>
+                        <div class="result-item-label">Payment Amount</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="totalInterest">$0</div>
+                        <div class="result-item-label">Total Interest</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="maxLoanAmount">$0</div>
+                        <div class="result-item-label">Max Loan Available</div>
+                    </div>
+                </div>
+                
+                <table class="breakdown-table">
+                    <tr>
+                        <th>Detail</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td>Loan Amount</td>
+                        <td id="loanAmountDisplay">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Total Repayment</td>
+                        <td id="totalRepayment">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Remaining 401k Balance</td>
+                        <td id="remainingBalance">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Frequency</td>
+                        <td id="paymentFrequency">-</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter your <strong>Current 401k Balance</strong></li>
+                <li>Input the <strong>Loan Amount</strong> you want to borrow</li>
+                <li>Enter the <strong>Interest Rate</strong> (typically prime rate + 1-2%)</li>
+                <li>Select the <strong>Repayment Term</strong> (maximum 5 years for general purpose)</li>
+                <li>Choose your <strong>Pay Frequency</strong> (how often you get paid)</li>
+                <li>Click <strong>Calculate Loan</strong> to see your repayment schedule</li>
+                <li><strong>Note:</strong> Maximum loan is typically 50% of vested balance or $50,000, whichever is less</li>
+                <li><strong>Warning:</strong> Unpaid 401k loans become taxable distributions if you leave your job</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('loan401kForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const currentBalance = validatePositiveNumber(document.getElementById('currentBalance').value, 'Current 401k Balance');
+                const loanAmount = validatePositiveNumber(document.getElementById('loanAmount').value, 'Loan Amount');
+                const interestRate = validatePositiveNumber(document.getElementById('interestRate').value, 'Interest Rate');
+                const loanTerm = validatePositiveNumber(document.getElementById('loanTerm').value, 'Loan Term');
+                const payFrequency = validatePositiveNumber(document.getElementById('payFrequency').value, 'Pay Frequency');
+                
+                // Calculate maximum loan amount (50% of balance or $50,000, whichever is less)
+                const maxLoan = Math.min(currentBalance * 0.5, 50000);
+                
+                if (loanAmount > maxLoan) {
+                    throw new Error(`Loan amount cannot exceed $${formatNumber(maxLoan, 0)} (50% of balance or $50,000 limit)`);
+                }
+                
+                if (interestRate < 1 || interestRate > 15) {
+                    throw new Error('Interest rate must be between 1-15%');
+                }
+                
+                // Calculate payment amount based on frequency
+                const periodsPerYear = payFrequency;
+                const totalPeriods = loanTerm * periodsPerYear;
+                const periodRate = interestRate / 100 / periodsPerYear;
+                
+                let paymentAmount;
+                if (periodRate === 0) {
+                    paymentAmount = loanAmount / totalPeriods;
+                } else {
+                    paymentAmount = (loanAmount * periodRate * Math.pow(1 + periodRate, totalPeriods)) / 
+                                   (Math.pow(1 + periodRate, totalPeriods) - 1);
+                }
+                
+                const totalRepayment = paymentAmount * totalPeriods;
+                const totalInterest = totalRepayment - loanAmount;
+                const remainingBalance = currentBalance - loanAmount;
+                
+                // Get frequency label
+                const frequencyLabels = {
+                    '26': 'Bi-weekly',
+                    '24': 'Semi-monthly', 
+                    '12': 'Monthly'
+                };
+                
+                document.getElementById('paymentAmount').textContent = formatCurrency(paymentAmount);
+                document.getElementById('totalInterest').textContent = formatCurrency(totalInterest);
+                document.getElementById('maxLoanAmount').textContent = formatCurrency(maxLoan);
+                
+                document.getElementById('loanAmountDisplay').textContent = formatCurrency(loanAmount);
+                document.getElementById('totalRepayment').textContent = formatCurrency(totalRepayment);
+                document.getElementById('remainingBalance').textContent = formatCurrency(remainingBalance);
+                document.getElementById('paymentFrequency').textContent = frequencyLabels[payFrequency];
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

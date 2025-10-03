@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Loan Calculator - Calculate Construction to Permanent Loan | Free Tool</title>
+    <meta name="description" content="Calculate construction loan payments and conversion to permanent mortgage. Input project cost, construction terms, and permanent loan details for accurate calculations.">
+    <meta name="keywords" content="construction loan calculator, construction to permanent loan, building loan calculator, construction mortgage calculator, construction financing">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="construction-loan-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="construction-loan-calculator.html">
+    <meta property="og:title" content="Construction Loan Calculator - Calculate Construction to Permanent Loan">
+    <meta property="og:description" content="Calculate construction loan payments and conversion to permanent mortgage with our free calculator.">
+    <meta property="og:image" content="images/construction-loan-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="construction-loan-calculator.html">
+    <meta property="twitter:title" content="Construction Loan Calculator - Calculate Construction to Permanent Loan">
+    <meta property="twitter:description" content="Calculate construction loan payments and conversion to permanent mortgage.">
+    <meta property="twitter:image" content="images/construction-loan-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Construction Loan Calculator",
+      "description": "Calculate construction loan payments and conversion to permanent mortgage",
+      "url": "construction-loan-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Construction Loan Calculator</h1>
+            <p>Calculate construction loan payments and conversion to permanent mortgage</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="constructionLoanForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectCost">Total Project Cost ($)</label>
+                        <input type="number" id="projectCost" step="5000" min="50000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="downPayment">Down Payment ($)</label>
+                        <input type="number" id="downPayment" step="1000" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="constructionRate">Construction Interest Rate (%)</label>
+                        <input type="number" id="constructionRate" step="0.25" min="1" max="15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="constructionTerm">Construction Term (months)</label>
+                        <select id="constructionTerm" required>
+                            <option value="">Select...</option>
+                            <option value="6">6 months</option>
+                            <option value="9">9 months</option>
+                            <option value="12">12 months</option>
+                            <option value="18">18 months</option>
+                            <option value="24">24 months</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="permanentRate">Permanent Mortgage Rate (%)</label>
+                        <input type="number" id="permanentRate" step="0.25" min="1" max="12" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="permanentTerm">Permanent Term (years)</label>
+                        <select id="permanentTerm" required>
+                            <option value="">Select...</option>
+                            <option value="15">15 years</option>
+                            <option value="20">20 years</option>
+                            <option value="25">25 years</option>
+                            <option value="30">30 years</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Construction Loan</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="monthlyConstruction">$0</div>
+                        <div class="result-item-label">Monthly Construction Interest</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="totalConstructionInterest">$0</div>
+                        <div class="result-item-label">Total Construction Interest</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="permanentPayment">$0</div>
+                        <div class="result-item-label">Permanent Monthly Payment</div>
+                    </div>
+                </div>
+                
+                <table class="breakdown-table">
+                    <tr>
+                        <th>Loan Phase</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Construction Loan Amount</td>
+                        <td id="constructionLoanAmount">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Construction Phase Cost</td>
+                        <td id="constructionPhaseCost">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Permanent Loan Amount</td>
+                        <td id="permanentLoanAmount">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Total Project + Financing</td>
+                        <td id="totalProjectCost">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Loan-to-Cost Ratio</td>
+                        <td id="loanToCost">0%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter the <strong>Total Project Cost</strong> for your construction</li>
+                <li>Input your <strong>Down Payment</strong> amount</li>
+                <li>Enter the <strong>Construction Interest Rate</strong> (typically variable rate)</li>
+                <li>Select the <strong>Construction Term</strong> (how long to build)</li>
+                <li>Enter the <strong>Permanent Mortgage Rate</strong> (rate after construction)</li>
+                <li>Select the <strong>Permanent Term</strong> (long-term mortgage length)</li>
+                <li>Click <strong>Calculate Construction Loan</strong> for results</li>
+                <li><strong>Note:</strong> During construction, you typically pay interest-only on funds drawn</li>
+                <li>After construction, the loan converts to a permanent mortgage</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('constructionLoanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const projectCost = validatePositiveNumber(document.getElementById('projectCost').value, 'Project Cost');
+                const downPayment = validateNumber(document.getElementById('downPayment').value, 'Down Payment');
+                const constructionRate = validatePositiveNumber(document.getElementById('constructionRate').value, 'Construction Rate');
+                const constructionTerm = validatePositiveNumber(document.getElementById('constructionTerm').value, 'Construction Term');
+                const permanentRate = validatePositiveNumber(document.getElementById('permanentRate').value, 'Permanent Rate');
+                const permanentTerm = validatePositiveNumber(document.getElementById('permanentTerm').value, 'Permanent Term');
+                
+                if (downPayment < 0) throw new Error('Down payment cannot be negative');
+                if (downPayment >= projectCost) throw new Error('Down payment cannot exceed project cost');
+                if (constructionRate < 1 || constructionRate > 15) throw new Error('Construction rate must be between 1-15%');
+                if (permanentRate < 1 || permanentRate > 12) throw new Error('Permanent rate must be between 1-12%');
+                
+                const constructionLoanAmount = projectCost - downPayment;
+                const loanToCostRatio = (constructionLoanAmount / projectCost) * 100;
+                
+                // During construction: Interest-only payments on average balance (assume 50% average draw)
+                const avgConstructionBalance = constructionLoanAmount * 0.5;
+                const monthlyConstructionRate = constructionRate / 100 / 12;
+                const monthlyConstructionInterest = avgConstructionBalance * monthlyConstructionRate;
+                const totalConstructionInterest = monthlyConstructionInterest * constructionTerm;
+                
+                // Total amount to convert to permanent loan
+                const permanentLoanAmount = constructionLoanAmount + totalConstructionInterest;
+                
+                // Calculate permanent mortgage payment
+                const permanentPayment = calculateMonthlyPayment(permanentLoanAmount, permanentRate, permanentTerm);
+                
+                const constructionPhaseCost = totalConstructionInterest;
+                const totalProjectCostWithFinancing = projectCost + totalConstructionInterest;
+                
+                document.getElementById('monthlyConstruction').textContent = formatCurrency(monthlyConstructionInterest);
+                document.getElementById('totalConstructionInterest').textContent = formatCurrency(totalConstructionInterest);
+                document.getElementById('permanentPayment').textContent = formatCurrency(permanentPayment);
+                
+                document.getElementById('constructionLoanAmount').textContent = formatCurrency(constructionLoanAmount);
+                document.getElementById('constructionPhaseCost').textContent = formatCurrency(constructionPhaseCost);
+                document.getElementById('permanentLoanAmount').textContent = formatCurrency(permanentLoanAmount);
+                document.getElementById('totalProjectCost').textContent = formatCurrency(totalProjectCostWithFinancing);
+                document.getElementById('loanToCost').textContent = formatPercentage(loanToCostRatio, 1);
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

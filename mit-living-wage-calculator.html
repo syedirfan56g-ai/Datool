@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT Living Wage Calculator - Calculate Living Wage by Location | Free Tool</title>
+    <meta name="description" content="Calculate living wage requirements based on family size and location. Based on MIT's living wage methodology. Get hourly wage estimates for different states and family configurations.">
+    <meta name="keywords" content="living wage calculator, MIT living wage, hourly wage calculator, cost of living calculator, family budget calculator, wage estimator">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="mit-living-wage-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="mit-living-wage-calculator.html">
+    <meta property="og:title" content="MIT Living Wage Calculator - Calculate Living Wage by Location">
+    <meta property="og:description" content="Calculate living wage requirements based on family size and location. Based on MIT's living wage methodology.">
+    <meta property="og:image" content="images/mit-living-wage-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="mit-living-wage-calculator.html">
+    <meta property="twitter:title" content="MIT Living Wage Calculator - Calculate Living Wage by Location">
+    <meta property="twitter:description" content="Calculate living wage requirements based on family size and location using MIT methodology.">
+    <meta property="twitter:image" content="images/mit-living-wage-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MIT Living Wage Calculator",
+      "description": "Calculate living wage requirements based on family size and location using MIT methodology",
+      "url": "mit-living-wage-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MIT Living Wage Calculator</h1>
+            <p>Calculate living wage requirements based on family size and location</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="livingWageForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adults">Number of Adults</label>
+                        <select id="adults" required>
+                            <option value="">Select...</option>
+                            <option value="1">1 Adult</option>
+                            <option value="2">2 Adults</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Number of Children</label>
+                        <select id="children" required>
+                            <option value="">Select...</option>
+                            <option value="0">0 Children</option>
+                            <option value="1">1 Child</option>
+                            <option value="2">2 Children</option>
+                            <option value="3">3 Children</option>
+                            <option value="4">4+ Children</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Location (State)</label>
+                    <select id="location" required>
+                        <option value="">Select State...</option>
+                        <option value="national">National Average</option>
+                        <option value="alabama">Alabama</option>
+                        <option value="california">California</option>
+                        <option value="florida">Florida</option>
+                        <option value="illinois">Illinois</option>
+                        <option value="massachusetts">Massachusetts</option>
+                        <option value="newyork">New York</option>
+                        <option value="texas">Texas</option>
+                        <option value="washington">Washington</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Living Wage</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="result-value" id="hourlyWage">$0.00</div>
+                <div class="result-label">Living Wage per Hour</div>
+                
+                <table class="breakdown-table">
+                    <tr>
+                        <th>Category</th>
+                        <th>Annual Cost</th>
+                        <th>Monthly Cost</th>
+                    </tr>
+                    <tr>
+                        <td>Housing</td>
+                        <td id="housingAnnual">$0</td>
+                        <td id="housingMonthly">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Food</td>
+                        <td id="foodAnnual">$0</td>
+                        <td id="foodMonthly">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Transportation</td>
+                        <td id="transportAnnual">$0</td>
+                        <td id="transportMonthly">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Healthcare</td>
+                        <td id="healthcareAnnual">$0</td>
+                        <td id="healthcareMonthly">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Childcare</td>
+                        <td id="childcareAnnual">$0</td>
+                        <td id="childcareMonthly">$0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td id="totalAnnual"><strong>$0</strong></td>
+                        <td id="totalMonthly"><strong>$0</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Select the <strong>Number of Adults</strong> in the household (1 or 2)</li>
+                <li>Select the <strong>Number of Children</strong> (0-4+)</li>
+                <li>Choose your <strong>Location</strong> (state or national average)</li>
+                <li>Click <strong>Calculate Living Wage</strong> to see the results</li>
+                <li>The calculator shows the hourly wage needed to cover basic living expenses</li>
+                <li>Review the breakdown of costs by category (housing, food, transportation, etc.)</li>
+                <li>Based on MIT's Living Wage Calculator methodology</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Living wage data (simplified version based on MIT data)
+        const livingWageData = {
+            national: {
+                baseHourly: 16.54,
+                housing: 13200,
+                food: 4800,
+                transport: 4320,
+                healthcare: 2400,
+                childcarePerChild: 8000
+            },
+            alabama: {
+                baseHourly: 14.12,
+                housing: 10800,
+                food: 4200,
+                transport: 3840,
+                healthcare: 2040,
+                childcarePerChild: 6800
+            },
+            california: {
+                baseHourly: 24.50,
+                housing: 21600,
+                food: 5400,
+                transport: 5040,
+                healthcare: 2880,
+                childcarePerChild: 12000
+            },
+            florida: {
+                baseHourly: 17.20,
+                housing: 14400,
+                food: 4800,
+                transport: 4320,
+                healthcare: 2640,
+                childcarePerChild: 8400
+            },
+            illinois: {
+                baseHourly: 18.60,
+                housing: 15600,
+                food: 5040,
+                transport: 4560,
+                healthcare: 2520,
+                childcarePerChild: 9600
+            },
+            massachusetts: {
+                baseHourly: 22.50,
+                housing: 19200,
+                food: 5280,
+                transport: 4800,
+                healthcare: 2760,
+                childcarePerChild: 11400
+            },
+            newyork: {
+                baseHourly: 25.80,
+                housing: 22800,
+                food: 5520,
+                transport: 5280,
+                healthcare: 3000,
+                childcarePerChild: 13200
+            },
+            texas: {
+                baseHourly: 16.20,
+                housing: 12000,
+                food: 4560,
+                transport: 4080,
+                healthcare: 2400,
+                childcarePerChild: 7800
+            },
+            washington: {
+                baseHourly: 20.40,
+                housing: 16800,
+                food: 5160,
+                transport: 4680,
+                healthcare: 2640,
+                childcarePerChild: 10800
+            }
+        };
+
+        document.getElementById('livingWageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const adults = parseInt(document.getElementById('adults').value);
+                const children = parseInt(document.getElementById('children').value);
+                const location = document.getElementById('location').value;
+                
+                if (!adults) throw new Error('Please select number of adults');
+                if (isNaN(children)) throw new Error('Please select number of children');
+                if (!location) throw new Error('Please select a location');
+                
+                const data = livingWageData[location];
+                
+                // Calculate costs
+                const housing = data.housing * (adults === 2 ? 1.3 : 1);
+                const food = data.food * (adults + children * 0.7);
+                const transport = data.transport * adults;
+                const healthcare = data.healthcare * (adults + children);
+                const childcare = children > 0 ? data.childcarePerChild * children : 0;
+                
+                const totalAnnual = housing + food + transport + healthcare + childcare;
+                const totalMonthly = totalAnnual / 12;
+                const hourlyWage = totalAnnual / (2080 * adults); // 2080 = 40 hrs/week * 52 weeks
+                
+                // Update display
+                document.getElementById('hourlyWage').textContent = formatCurrency(hourlyWage);
+                
+                document.getElementById('housingAnnual').textContent = formatCurrency(housing);
+                document.getElementById('housingMonthly').textContent = formatCurrency(housing / 12);
+                
+                document.getElementById('foodAnnual').textContent = formatCurrency(food);
+                document.getElementById('foodMonthly').textContent = formatCurrency(food / 12);
+                
+                document.getElementById('transportAnnual').textContent = formatCurrency(transport);
+                document.getElementById('transportMonthly').textContent = formatCurrency(transport / 12);
+                
+                document.getElementById('healthcareAnnual').textContent = formatCurrency(healthcare);
+                document.getElementById('healthcareMonthly').textContent = formatCurrency(healthcare / 12);
+                
+                document.getElementById('childcareAnnual').textContent = formatCurrency(childcare);
+                document.getElementById('childcareMonthly').textContent = formatCurrency(childcare / 12);
+                
+                document.getElementById('totalAnnual').textContent = formatCurrency(totalAnnual);
+                document.getElementById('totalMonthly').textContent = formatCurrency(totalMonthly);
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

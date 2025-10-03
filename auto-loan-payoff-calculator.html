@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Loan Payoff Calculator - Calculate Early Loan Payoff Savings | Free Tool</title>
+    <meta name="description" content="Calculate auto loan payoff savings with extra payments. See how much time and interest you can save by paying off your car loan early with our free calculator.">
+    <meta name="keywords" content="auto loan payoff calculator, car loan early payoff, loan payoff calculator, extra payment calculator, auto loan calculator, car finance calculator">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="auto-loan-payoff-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="auto-loan-payoff-calculator.html">
+    <meta property="og:title" content="Auto Loan Payoff Calculator - Calculate Early Loan Payoff Savings">
+    <meta property="og:description" content="Calculate auto loan payoff savings with extra payments. See how much you can save by paying off your car loan early.">
+    <meta property="og:image" content="images/auto-loan-payoff-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="auto-loan-payoff-calculator.html">
+    <meta property="twitter:title" content="Auto Loan Payoff Calculator - Calculate Early Loan Payoff Savings">
+    <meta property="twitter:description" content="Calculate auto loan payoff savings with extra payments using our free calculator.">
+    <meta property="twitter:image" content="images/auto-loan-payoff-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Auto Loan Payoff Calculator",
+      "description": "Calculate auto loan payoff savings with extra payments using our free calculator",
+      "url": "auto-loan-payoff-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Auto Loan Payoff Calculator</h1>
+            <p>Calculate early payoff savings and optimal payment strategies</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="autoPayoffForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentBalance">Current Loan Balance ($)</label>
+                        <input type="number" id="currentBalance" step="100" min="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interestRate">Annual Interest Rate (%)</label>
+                        <input type="number" id="interestRate" step="0.01" min="0" max="30" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentPayment">Current Monthly Payment ($)</label>
+                        <input type="number" id="currentPayment" step="10" min="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="remainingTerms">Remaining Terms (months)</label>
+                        <input type="number" id="remainingTerms" min="1" max="84" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="extraPayment">Extra Monthly Payment ($)</label>
+                    <input type="number" id="extraPayment" step="25" min="0" value="0">
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Payoff Scenarios</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="monthsSaved">0</div>
+                        <div class="result-item-label">Months Saved</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="interestSaved">$0</div>
+                        <div class="result-item-label">Interest Saved</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="newPayoffDate">--</div>
+                        <div class="result-item-label">New Payoff Date</div>
+                    </div>
+                </div>
+                
+                <table class="breakdown-table">
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Current Loan</th>
+                        <th>With Extra Payment</th>
+                    </tr>
+                    <tr>
+                        <td>Monthly Payment</td>
+                        <td id="currentMonthlyPayment">$0</td>
+                        <td id="newMonthlyPayment">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Payoff Time</td>
+                        <td id="currentPayoffTime">0 months</td>
+                        <td id="newPayoffTime">0 months</td>
+                    </tr>
+                    <tr>
+                        <td>Total Interest</td>
+                        <td id="currentTotalInterest">$0</td>
+                        <td id="newTotalInterest">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Total Paid</td>
+                        <td id="currentTotalPaid">$0</td>
+                        <td id="newTotalPaid">$0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter your <strong>Current Loan Balance</strong> remaining</li>
+                <li>Input your loan's <strong>Annual Interest Rate</strong></li>
+                <li>Enter your <strong>Current Monthly Payment</strong> amount</li>
+                <li>Input the <strong>Remaining Terms</strong> in months</li>
+                <li>Enter any <strong>Extra Monthly Payment</strong> you can afford</li>
+                <li>Click <strong>Calculate Payoff Scenarios</strong> to see the comparison</li>
+                <li>Review how much time and interest you can save with extra payments</li>
+                <li>Experiment with different extra payment amounts to find your optimal strategy</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function calculateLoanPayoff(balance, rate, payment) {
+            if (rate === 0) {
+                return {
+                    months: Math.ceil(balance / payment),
+                    totalInterest: 0,
+                    totalPaid: balance
+                };
+            }
+            
+            const monthlyRate = rate / 100 / 12;
+            let remainingBalance = balance;
+            let months = 0;
+            let totalInterest = 0;
+            
+            while (remainingBalance > 0.01 && months < 600) { // Cap at 50 years
+                const interestPayment = remainingBalance * monthlyRate;
+                const principalPayment = Math.min(payment - interestPayment, remainingBalance);
+                
+                if (principalPayment <= 0) {
+                    throw new Error('Payment is too low to cover interest');
+                }
+                
+                totalInterest += interestPayment;
+                remainingBalance -= principalPayment;
+                months++;
+            }
+            
+            return {
+                months: months,
+                totalInterest: totalInterest,
+                totalPaid: balance + totalInterest
+            };
+        }
+
+        document.getElementById('autoPayoffForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const currentBalance = validatePositiveNumber(document.getElementById('currentBalance').value, 'Current Balance');
+                const interestRate = validateNumber(document.getElementById('interestRate').value, 'Interest Rate');
+                const currentPayment = validatePositiveNumber(document.getElementById('currentPayment').value, 'Current Payment');
+                const remainingTerms = validatePositiveNumber(document.getElementById('remainingTerms').value, 'Remaining Terms');
+                const extraPayment = validateNumber(document.getElementById('extraPayment').value || '0', 'Extra Payment');
+                
+                if (interestRate < 0 || interestRate > 30) throw new Error('Interest rate must be between 0-30%');
+                if (extraPayment < 0) throw new Error('Extra payment cannot be negative');
+                
+                // Calculate current loan scenario
+                const currentScenario = calculateLoanPayoff(currentBalance, interestRate, currentPayment);
+                
+                // Calculate with extra payment
+                const newPayment = currentPayment + extraPayment;
+                const newScenario = calculateLoanPayoff(currentBalance, interestRate, newPayment);
+                
+                const monthsSaved = currentScenario.months - newScenario.months;
+                const interestSaved = currentScenario.totalInterest - newScenario.totalInterest;
+                
+                // Calculate new payoff date
+                const today = new Date();
+                const payoffDate = new Date(today.getFullYear(), today.getMonth() + newScenario.months, today.getDate());
+                const payoffDateString = payoffDate.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+                
+                document.getElementById('monthsSaved').textContent = monthsSaved;
+                document.getElementById('interestSaved').textContent = formatCurrency(interestSaved);
+                document.getElementById('newPayoffDate').textContent = payoffDateString;
+                
+                document.getElementById('currentMonthlyPayment').textContent = formatCurrency(currentPayment);
+                document.getElementById('newMonthlyPayment').textContent = formatCurrency(newPayment);
+                
+                document.getElementById('currentPayoffTime').textContent = `${currentScenario.months} months`;
+                document.getElementById('newPayoffTime').textContent = `${newScenario.months} months`;
+                
+                document.getElementById('currentTotalInterest').textContent = formatCurrency(currentScenario.totalInterest);
+                document.getElementById('newTotalInterest').textContent = formatCurrency(newScenario.totalInterest);
+                
+                document.getElementById('currentTotalPaid').textContent = formatCurrency(currentScenario.totalPaid);
+                document.getElementById('newTotalPaid').textContent = formatCurrency(newScenario.totalPaid);
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

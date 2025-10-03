@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSCR Loan Calculator - Calculate Debt Service Coverage Ratio | Free Tool</title>
+    <meta name="description" content="Calculate DSCR (Debt Service Coverage Ratio) for loan qualification. Input income, expenses, and loan details to determine if you qualify for commercial financing.">
+    <meta name="keywords" content="DSCR calculator, debt service coverage ratio, commercial loan calculator, investment property loan, business loan qualification">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="dscr-loan-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="dscr-loan-calculator.html">
+    <meta property="og:title" content="DSCR Loan Calculator - Calculate Debt Service Coverage Ratio">
+    <meta property="og:description" content="Calculate DSCR for loan qualification. Determine if you qualify for commercial financing with our free calculator.">
+    <meta property="og:image" content="images/dscr-loan-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="dscr-loan-calculator.html">
+    <meta property="twitter:title" content="DSCR Loan Calculator - Calculate Debt Service Coverage Ratio">
+    <meta property="twitter:description" content="Calculate DSCR for loan qualification with our free calculator.">
+    <meta property="twitter:image" content="images/dscr-loan-calculator-preview.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "DSCR Loan Calculator",
+      "description": "Calculate DSCR (Debt Service Coverage Ratio) for loan qualification",
+      "url": "dscr-loan-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DSCR Loan Calculator</h1>
+            <p>Calculate Debt Service Coverage Ratio and loan qualification</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="dscrForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="monthlyIncome">Monthly Gross Income ($)</label>
+                        <input type="number" id="monthlyIncome" step="100" min="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyExpenses">Monthly Operating Expenses ($)</label>
+                        <input type="number" id="monthlyExpenses" step="50" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="loanAmount">Proposed Loan Amount ($)</label>
+                        <input type="number" id="loanAmount" step="5000" min="10000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interestRate">Interest Rate (%)</label>
+                        <input type="number" id="interestRate" step="0.25" min="1" max="20" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="loanTerm">Loan Term (years)</label>
+                        <select id="loanTerm" required>
+                            <option value="">Select...</option>
+                            <option value="5">5 years</option>
+                            <option value="10">10 years</option>
+                            <option value="15">15 years</option>
+                            <option value="20">20 years</option>
+                            <option value="25">25 years</option>
+                            <option value="30">30 years</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="loanType">Loan Type</label>
+                        <select id="loanType" required>
+                            <option value="">Select...</option>
+                            <option value="commercial">Commercial Real Estate</option>
+                            <option value="investment">Investment Property</option>
+                            <option value="business">Business Loan</option>
+                            <option value="sba">SBA Loan</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate DSCR</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="dscrRatio">0.00</div>
+                        <div class="result-item-label">DSCR Ratio</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="qualification">Unknown</div>
+                        <div class="result-item-label">Qualification Status</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="monthlyDebtService">$0</div>
+                        <div class="result-item-label">Monthly Debt Service</div>
+                    </div>
+                </div>
+                
+                <table class="breakdown-table">
+                    <tr>
+                        <th>Financial Metric</th>
+                        <th>Monthly Amount</th>
+                        <th>Annual Amount</th>
+                    </tr>
+                    <tr>
+                        <td>Gross Income</td>
+                        <td id="monthlyIncomeDisplay">$0</td>
+                        <td id="annualIncomeDisplay">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Expenses</td>
+                        <td id="monthlyExpensesDisplay">$0</td>
+                        <td id="annualExpensesDisplay">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Net Operating Income</td>
+                        <td id="monthlyNOI">$0</td>
+                        <td id="annualNOI">$0</td>
+                    </tr>
+                    <tr>
+                        <td>Debt Service</td>
+                        <td id="monthlyDebtServiceDisplay">$0</td>
+                        <td id="annualDebtServiceDisplay">$0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Required Minimum DSCR</strong></td>
+                        <td colspan="2" id="minimumDSCR"><strong>1.25</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter your <strong>Monthly Gross Income</strong> from the property or business</li>
+                <li>Input <strong>Monthly Operating Expenses</strong> (taxes, insurance, maintenance, etc.)</li>
+                <li>Enter the <strong>Proposed Loan Amount</strong> you want to borrow</li>
+                <li>Input the <strong>Interest Rate</strong> quoted by the lender</li>
+                <li>Select the <strong>Loan Term</strong> (repayment period)</li>
+                <li>Choose the <strong>Loan Type</strong> to determine minimum DSCR requirements</li>
+                <li>Click <strong>Calculate DSCR</strong> to see if you qualify</li>
+                <li><strong>DSCR Formula:</strong> Net Operating Income ÷ Total Debt Service</li>
+                <li><strong>Minimum DSCR:</strong> Usually 1.20-1.35 depending on loan type</li>
+                <li>Higher DSCR = Better qualification and potentially lower rates</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Minimum DSCR requirements by loan type
+        const dscrRequirements = {
+            'commercial': 1.25,
+            'investment': 1.20,
+            'business': 1.35,
+            'sba': 1.15
+        };
+
+        document.getElementById('dscrForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const monthlyIncome = validatePositiveNumber(document.getElementById('monthlyIncome').value, 'Monthly Income');
+                const monthlyExpenses = validateNumber(document.getElementById('monthlyExpenses').value, 'Monthly Expenses');
+                const loanAmount = validatePositiveNumber(document.getElementById('loanAmount').value, 'Loan Amount');
+                const interestRate = validatePositiveNumber(document.getElementById('interestRate').value, 'Interest Rate');
+                const loanTerm = validatePositiveNumber(document.getElementById('loanTerm').value, 'Loan Term');
+                const loanType = document.getElementById('loanType').value;
+                
+                if (monthlyExpenses < 0) throw new Error('Monthly expenses cannot be negative');
+                if (monthlyExpenses >= monthlyIncome) throw new Error('Expenses cannot exceed income');
+                if (interestRate < 1 || interestRate > 20) throw new Error('Interest rate must be between 1-20%');
+                if (!loanType) throw new Error('Please select a loan type');
+                
+                // Calculate Net Operating Income (NOI)
+                const monthlyNOI = monthlyIncome - monthlyExpenses;
+                const annualNOI = monthlyNOI * 12;
+                
+                // Calculate monthly debt service
+                const monthlyDebtService = calculateMonthlyPayment(loanAmount, interestRate, loanTerm);
+                const annualDebtService = monthlyDebtService * 12;
+                
+                // Calculate DSCR
+                const dscrRatio = annualNOI / annualDebtService;
+                
+                // Determine qualification
+                const minimumDSCR = dscrRequirements[loanType];
+                const qualificationStatus = dscrRatio >= minimumDSCR ? 'Qualified' : 'Not Qualified';
+                
+                // Update display
+                document.getElementById('dscrRatio').textContent = formatNumber(dscrRatio, 2);
+                document.getElementById('qualification').textContent = qualificationStatus;
+                document.getElementById('monthlyDebtService').textContent = formatCurrency(monthlyDebtService);
+                
+                document.getElementById('monthlyIncomeDisplay').textContent = formatCurrency(monthlyIncome);
+                document.getElementById('annualIncomeDisplay').textContent = formatCurrency(monthlyIncome * 12);
+                
+                document.getElementById('monthlyExpensesDisplay').textContent = formatCurrency(monthlyExpenses);
+                document.getElementById('annualExpensesDisplay').textContent = formatCurrency(monthlyExpenses * 12);
+                
+                document.getElementById('monthlyNOI').textContent = formatCurrency(monthlyNOI);
+                document.getElementById('annualNOI').textContent = formatCurrency(annualNOI);
+                
+                document.getElementById('monthlyDebtServiceDisplay').textContent = formatCurrency(monthlyDebtService);
+                document.getElementById('annualDebtServiceDisplay').textContent = formatCurrency(annualDebtService);
+                
+                document.getElementById('minimumDSCR').textContent = formatNumber(minimumDSCR, 2);
+                
+                // Change result color based on qualification
+                const resultItems = document.querySelectorAll('.result-item-value');
+                if (qualificationStatus === 'Qualified') {
+                    resultSection.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+                } else {
+                    resultSection.style.background = 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)';
+                }
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

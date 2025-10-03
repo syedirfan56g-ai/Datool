@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Biology Score Calculator - Estimate Your AP Bio Exam Score | Free Tool</title>
+    <meta name="description" content="Calculate your AP Biology exam score instantly. Input multiple choice and free response scores to get an accurate AP score estimate (1-5). Perfect for AP Bio students and teachers.">
+    <meta name="keywords" content="AP Biology calculator, AP Bio score, AP exam calculator, biology score estimator, college board calculator, AP test calculator">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="ap-bio-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="ap-bio-calculator.html">
+    <meta property="og:title" content="AP Biology Score Calculator - Estimate Your AP Bio Exam Score">
+    <meta property="og:description" content="Calculate your AP Biology exam score instantly. Input multiple choice and free response scores to get an accurate AP score estimate.">
+    <meta property="og:image" content="images/ap-bio-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="ap-bio-calculator.html">
+    <meta property="twitter:title" content="AP Biology Score Calculator - Estimate Your AP Bio Exam Score">
+    <meta property="twitter:description" content="Calculate your AP Biology exam score instantly. Perfect for AP Bio students preparing for the exam.">
+    <meta property="twitter:image" content="images/ap-bio-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AP Biology Score Calculator",
+      "description": "Calculate your AP Biology exam score instantly with our free calculator",
+      "url": "ap-bio-calculator.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "educationalUse": "assessment",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AP Biology Score Calculator</h1>
+            <p>Estimate your AP Biology exam score based on your performance</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="apBioForm">
+                <div class="form-group">
+                    <label for="multipleChoice">Multiple Choice Score (out of 69)</label>
+                    <input type="number" id="multipleChoice" min="0" max="69" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="frq1">Free Response Question 1 (out of 10)</label>
+                    <input type="number" id="frq1" min="0" max="10" step="0.5" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="frq2">Free Response Question 2 (out of 10)</label>
+                    <input type="number" id="frq2" min="0" max="10" step="0.5" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="frq3">Free Response Question 3 (out of 4)</label>
+                        <input type="number" id="frq3" min="0" max="4" step="0.5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="frq4">Free Response Question 4 (out of 4)</label>
+                        <input type="number" id="frq4" min="0" max="4" step="0.5" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="frq5">Free Response Question 5 (out of 4)</label>
+                        <input type="number" id="frq5" min="0" max="4" step="0.5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="frq6">Free Response Question 6 (out of 4)</label>
+                        <input type="number" id="frq6" min="0" max="4" step="0.5" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate AP Score</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="totalScore">0</div>
+                        <div class="result-item-label">Total Points</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="percentage">0%</div>
+                        <div class="result-item-label">Percentage</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="apScore">1</div>
+                        <div class="result-item-label">Estimated AP Score</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter your <strong>Multiple Choice score</strong> out of 69 questions</li>
+                <li>Enter your scores for <strong>Free Response Questions 1-2</strong> (each out of 10 points)</li>
+                <li>Enter your scores for <strong>Free Response Questions 3-6</strong> (each out of 4 points)</li>
+                <li>Click <strong>Calculate AP Score</strong> to see your estimated result</li>
+                <li>The calculator uses College Board's scoring guidelines to estimate your 1-5 AP score</li>
+                <li><strong>Score Guide:</strong> 5 = Extremely Well Qualified, 4 = Well Qualified, 3 = Qualified, 2 = Possibly Qualified, 1 = No Recommendation</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('apBioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                // Get all input values
+                const mcScore = validateNumber(document.getElementById('multipleChoice').value, 'Multiple Choice Score');
+                const frq1 = validateNumber(document.getElementById('frq1').value, 'FRQ 1');
+                const frq2 = validateNumber(document.getElementById('frq2').value, 'FRQ 2');
+                const frq3 = validateNumber(document.getElementById('frq3').value, 'FRQ 3');
+                const frq4 = validateNumber(document.getElementById('frq4').value, 'FRQ 4');
+                const frq5 = validateNumber(document.getElementById('frq5').value, 'FRQ 5');
+                const frq6 = validateNumber(document.getElementById('frq6').value, 'FRQ 6');
+                
+                // Validate ranges
+                if (mcScore < 0 || mcScore > 69) throw new Error('Multiple Choice score must be between 0-69');
+                if (frq1 < 0 || frq1 > 10) throw new Error('FRQ 1 score must be between 0-10');
+                if (frq2 < 0 || frq2 > 10) throw new Error('FRQ 2 score must be between 0-10');
+                if (frq3 < 0 || frq3 > 4) throw new Error('FRQ 3 score must be between 0-4');
+                if (frq4 < 0 || frq4 > 4) throw new Error('FRQ 4 score must be between 0-4');
+                if (frq5 < 0 || frq5 > 4) throw new Error('FRQ 5 score must be between 0-4');
+                if (frq6 < 0 || frq6 > 4) throw new Error('FRQ 6 score must be between 0-4');
+                
+                // Calculate total score
+                // MC is worth 50% (69 points), FRQ is worth 50% (36 points total)
+                const mcWeighted = (mcScore / 69) * 50;
+                const frqTotal = frq1 + frq2 + frq3 + frq4 + frq5 + frq6;
+                const frqWeighted = (frqTotal / 36) * 50;
+                const totalPercentage = mcWeighted + frqWeighted;
+                
+                // Estimate AP score based on percentage
+                let apScore = estimateAPScore('biology', totalPercentage);
+                
+                document.getElementById('totalScore').textContent = formatNumber(frqTotal + mcScore, 0);
+                document.getElementById('percentage').textContent = formatPercentage(totalPercentage, 1);
+                document.getElementById('apScore').textContent = apScore;
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

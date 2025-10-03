@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up - Access Your Calculator Account | Datools</title>
+    <meta name="description" content="Login or sign up for your Datools account to access free calculator tools. Secure login with privacy protection for educational and financial calculators.">
+    <meta name="keywords" content="login, sign up, user account, calculator tools login, Datools account, secure access">
+    <meta name="author" content="Datools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="login.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="login.html">
+    <meta property="og:title" content="Login / Sign Up - Access Your Calculator Account">
+    <meta property="og:description" content="Login or sign up for your Datools account to access free calculator tools with privacy protection.">
+    <meta property="og:image" content="images/login-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="login.html">
+    <meta property="twitter:title" content="Login / Sign Up - Access Your Calculator Account">
+    <meta property="twitter:description" content="Secure login for your Datools calculator account.">
+    <meta property="twitter:image" content="images/login-preview.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Login / Sign Up",
+      "description": "Login or sign up for your Datools account to access free calculator tools",
+      "url": "login.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Datools",
+        "url": "index.html"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: none;
+            overflow-x: hidden;
+            padding: 20px 0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Lamp Container */
+        .lamp-container {
+            position: relative;
+            margin-bottom: 80px;
+            cursor: pointer;
+            transform: translateY(0);
+        }
+
+        /* Modern Pendant Lamp Housing */
+        .lamp-housing {
+            width: 140px;
+            height: 60px;
+            background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 50%, #333 100%);
+            border-radius: 70px 70px 20px 20px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,255,255,0.1),
+                inset 0 -2px 4px rgba(0,0,0,0.3);
+        }
+
+        .lamp-housing::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(180deg, #444 0%, #222 100%);
+            border-radius: 15px;
+            box-shadow: 
+                inset 0 1px 2px rgba(255,255,255,0.2),
+                0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Pendant Lamp Interior/Bulb Area */
+        .lamp-interior {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #333 100%);
+            border-radius: 60px;
+            transition: all 0.6s ease;
+        }
+
+        .lamp-interior.on {
+            background: linear-gradient(180deg, #fff9c4 0%, #ffeb3b 100%);
+            box-shadow: 
+                0 0 20px rgba(255, 235, 59, 0.8),
+                inset 0 -5px 10px rgba(255, 200, 0, 0.6);
+        }
+
+        /* Hanging Cord */
+        .cord {
+            width: 3px;
+            height: 100px;
+            background: linear-gradient(180deg, #666 0%, #999 50%, #666 100%);
+            margin: 0;
+            position: relative;
+            top: -8px;
+            left: 30px;
+            transition: all 0.4s ease;
+            border-radius: 1.5px;
+        }
+
+        .cord:hover {
+            background: linear-gradient(180deg, #888 0%, #bbb 50%, #888 100%);
+        }
+
+        .cord-pull {
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(45deg, #ccc 0%, #999 50%, #666 100%);
+            border-radius: 50%;
+            margin: 0;
+            position: relative;
+            top: -2px;
+            left: -7.5px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            box-shadow: 
+                0 2px 4px rgba(0,0,0,0.3),
+                inset 0 1px 2px rgba(255,255,255,0.3);
+        }
+
+        .cord-pull:hover {
+            background: linear-gradient(45deg, #ddd 0%, #bbb 50%, #888 100%);
+            transform: translateY(1px) scale(1.1);
+            box-shadow: 
+                0 4px 8px rgba(0,0,0,0.4),
+                inset 0 1px 2px rgba(255,255,255,0.4);
+        }
+
+        .cord-pull.pulled {
+            transform: translateY(8px) scale(0.9);
+            background: linear-gradient(45deg, #eee 0%, #ccc 50%, #999 100%);
+            animation: cordBounce 0.6s ease;
+        }
+
+        @keyframes cordBounce {
+            0% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(12px) scale(0.85); }
+            60% { transform: translateY(6px) scale(0.95); }
+            100% { transform: translateY(8px) scale(0.9); }
+        }
+
+        /* Spotlight Effect */
+        .spotlight {
+            position: absolute;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 700px;
+            background: radial-gradient(ellipse 320px 120px at 50% 0%, 
+                rgba(255, 220, 120, 0.28) 0%,
+                rgba(255, 235, 150, 0.20) 20%,
+                rgba(255, 245, 180, 0.14) 40%,
+                rgba(255, 250, 200, 0.10) 60%,
+                rgba(255, 255, 220, 0.06) 75%,
+                rgba(255, 255, 240, 0.03) 85%,
+                transparent 100%
+            );
+            clip-path: polygon(40% 0%, 60% 0%, 88% 100%, 12% 100%);
+            opacity: 0;
+            transition: all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(0.5px);
+        }
+
+        .spotlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse 280px 100px at 50% 0%, 
+                rgba(255, 200, 80, 0.18) 0%,
+                rgba(255, 220, 120, 0.10) 30%,
+                transparent 70%
+            );
+            clip-path: polygon(42% 0%, 58% 0%, 85% 100%, 15% 100%);
+            filter: blur(1px);
+        }
+
+        .spotlight::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse 380px 140px at 50% 0%, 
+                rgba(255, 240, 150, 0.12) 0%,
+                rgba(255, 250, 200, 0.06) 40%,
+                transparent 80%
+            );
+            clip-path: polygon(38% 0%, 62% 0%, 92% 100%, 8% 100%);
+            filter: blur(2px);
+        }
+
+        .spotlight.active {
+            width: 720px;
+            opacity: 1;
+        }
+
+        /* Login/Signup Form Container */
+        .auth-container {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(40, 40, 40, 0.2);
+            opacity: 0.01;
+            transform: translateY(30px);
+            transition: all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+            filter: blur(8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(255, 220, 120, 0.2);
+            filter: blur(0);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(255, 220, 120, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        /* Tab Buttons */
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 35px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 14px 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .tab-button.active::before {
+            left: 0;
+        }
+
+        /* Form Styles */
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e8ebf0;
+            border-radius: 15px;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #ffffff;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+            color: #2c2c2c;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd166;
+            background: white;
+            box-shadow: 
+                0 0 0 4px rgba(255, 209, 102, 0.15),
+                inset 0 1px 3px rgba(0, 0, 0, 0.06),
+                0 4px 12px rgba(255, 209, 102, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ffd166 0%, #f4a261 100%);
+            color: #2c2c2c;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 15px rgba(255, 209, 102, 0.4),
+                0 0 20px rgba(255, 209, 102, 0.2);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f4a261 0%, #ffd166 100%);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(255, 209, 102, 0.5),
+                0 0 30px rgba(255, 209, 102, 0.4);
+            color: #1c1c1c;
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            color: #f4a261;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back to Home Link */
+        .back-home {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: rgba(150, 150, 150, 0.8);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-home:hover {
+            color: rgba(200, 200, 200, 1);
+            transform: translateX(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .auth-container {
+                max-width: 100%;
+                padding: 30px 25px;
+                border-radius: 20px;
+            }
+            
+            .lamp-housing {
+                width: 120px;
+                height: 50px;
+            }
+            
+            .lamp-interior {
+                width: 100px;
+                height: 35px;
+            }
+            
+            .cord {
+                height: 85px;
+                left: 25px;
+            }
+            
+            .spotlight {
+                width: 0;
+                top: 95px;
+                height: 600px;
+            }
+            
+            .spotlight.active {
+                width: 580px;
+            }
+            
+            .back-home {
+                top: 20px;
+                left: 20px;
+                font-size: 14px;
+            }
+            
+            .instruction {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 25px 20px;
+            }
+            
+            .form-group input {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+            
+            .submit-btn {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            .tab-button {
+                padding: 12px 18px;
+                font-size: 15px;
+            }
+        }
+
+        /* Instruction Text */
+        .instruction {
+            color: rgba(200, 200, 200, 0.9);
+            font-size: 18px;
+            margin-bottom: 40px;
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            font-weight: 300;
+        }
+
+        .instruction.hidden {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-home">← Back to Home</a>
+    
+    <div class="container">
+        <!-- Spotlight Effect -->
+        <div class="spotlight" id="spotlight"></div>
+        
+        <!-- Lamp Section -->
+        <div class="lamp-container" onclick="turnOnLamp()">
+            <div class="lamp-housing">
+                <div class="lamp-interior" id="lampInterior"></div>
+            </div>
+            <div class="cord">
+                <div class="cord-pull" id="cordPull"></div>
+            </div>
+        </div>
+        
+        <div class="instruction" id="instruction">
+            Click the cord to turn on the light and access login
+        </div>
+
+        <!-- Authentication Forms -->
+        <div class="auth-container" id="authContainer">
+            <!-- Tab Buttons -->
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="switchTab('login')">Login</button>
+                <button class="tab-button" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="form-content active" id="loginForm">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="submit-btn">Login to Datools</button>
+                    <div class="forgot-password">
+                        <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="form-content" id="signupForm">
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lampIsOn = false;
+
+        function turnOnLamp() {
+            if (lampIsOn) return;
+            
+            lampIsOn = true;
+            
+            // Start cord pull animation
+            document.getElementById('cordPull').classList.add('pulled');
+            
+            // After cord animation, turn on lamp interior with warm glow
+            setTimeout(() => {
+                document.getElementById('lampInterior').classList.add('on');
+                document.getElementById('instruction').classList.add('hidden');
+            }, 200);
+            
+            // Show realistic spotlight effect with smooth fade
+            setTimeout(() => {
+                document.getElementById('spotlight').classList.add('active');
+            }, 500);
+            
+            // Show form after spotlight is well established
+            setTimeout(() => {
+                document.getElementById('authContainer').classList.add('visible');
+            }, 1000);
+            
+            // Reset cord pull after animation
+            setTimeout(() => {
+                document.getElementById('cordPull').classList.remove('pulled');
+            }, 800);
+        }
+
+        function switchTab(tabName) {
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Hide all form contents
+            document.querySelectorAll('.form-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Activate selected tab
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Form').classList.add('active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simple validation
+            if (email && password) {
+                // In a real application, you would send this to a server
+                alert('Login successful! Welcome to Datools.');
+                // Redirect to dashboard or home page
+                window.location.href = 'index.html';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+            
+            // In a real application, you would send this to a server
+            alert('Account created successfully! Welcome to Datools.');
+            // Redirect to dashboard or home page
+            window.location.href = 'index.html';
+        }
+
+        function showForgotPassword() {
+            const email = prompt('Enter your email address to reset your password:');
+            if (email) {
+                alert('Password reset instructions have been sent to ' + email);
+            }
+        }
+
+        // Add keyboard support for lamp activation
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' || event.code === 'Enter') {
+                if (!lampIsOn) {
+                    event.preventDefault();
+                    turnOnLamp();
+                }
+            }
+        });
+
+        // Add accessibility
+        document.querySelector('.lamp-container').setAttribute('tabindex', '0');
+        document.querySelector('.lamp-container').setAttribute('role', 'button');
+        document.querySelector('.lamp-container').setAttribute('aria-label', 'Click to turn on lamp and access login form');
+    </script>
+</body>
+</html>

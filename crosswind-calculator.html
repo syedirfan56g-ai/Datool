@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crosswind Calculator - Aviation Wind Component Calculator | Free Tool</title>
+    <meta name="description" content="Calculate crosswind and headwind components for aviation. Input wind speed, direction, and runway heading to get accurate wind components for safe flight operations.">
+    <meta name="keywords" content="crosswind calculator, aviation calculator, wind component, headwind calculator, pilot tools, aviation weather, flight planning">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="crosswind-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="crosswind-calculator.html">
+    <meta property="og:title" content="Crosswind Calculator - Aviation Wind Component Calculator">
+    <meta property="og:description" content="Calculate crosswind and headwind components for aviation. Perfect for pilots and flight planning.">
+    <meta property="og:image" content="images/crosswind-calculator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="crosswind-calculator.html">
+    <meta property="twitter:title" content="Crosswind Calculator - Aviation Wind Component Calculator">
+    <meta property="twitter:description" content="Calculate crosswind and headwind components for aviation. Essential tool for pilots.">
+    <meta property="twitter:image" content="images/crosswind-calculator-preview.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Crosswind Calculator",
+      "description": "Calculate crosswind and headwind components for aviation with our free calculator",
+      "url": "crosswind-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "pilots"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Crosswind Calculator</h1>
+            <p>Calculate crosswind and headwind components for aviation</p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="crosswindForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="windSpeed">Wind Speed (knots)</label>
+                        <input type="number" id="windSpeed" step="0.1" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="windDirection">Wind Direction (degrees)</label>
+                        <input type="number" id="windDirection" min="0" max="360" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="runwayHeading">Runway Heading (degrees)</label>
+                    <input type="number" id="runwayHeading" min="0" max="360" required>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Wind Components</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div id="resultSection" class="result-section">
+                <div class="multi-result">
+                    <div class="result-item">
+                        <div class="result-item-value" id="crosswindComponent">0</div>
+                        <div class="result-item-label">Crosswind (knots)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="headwindComponent">0</div>
+                        <div class="result-item-label">Headwind (knots)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-value" id="angleDifference">0°</div>
+                        <div class="result-item-label">Wind Angle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter the <strong>Wind Speed</strong> in knots</li>
+                <li>Enter the <strong>Wind Direction</strong> in degrees (0-360, where 0° is North)</li>
+                <li>Enter the <strong>Runway Heading</strong> in degrees (direction you're facing on the runway)</li>
+                <li>Click <strong>Calculate Wind Components</strong> to get the results</li>
+                <li><strong>Crosswind:</strong> Wind component perpendicular to the runway (affects lateral control)</li>
+                <li><strong>Headwind:</strong> Wind component along the runway (positive = headwind, negative = tailwind)</li>
+                <li>Use these values for safe landing and takeoff planning</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Datools. Created by Syed Afnan SAV</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('crosswindForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorElement = document.getElementById('errorMessage');
+            const resultSection = document.getElementById('resultSection');
+            
+            try {
+                hideError(errorElement);
+                
+                const windSpeed = validatePositiveNumber(document.getElementById('windSpeed').value, 'Wind Speed');
+                const windDirection = validateNumber(document.getElementById('windDirection').value, 'Wind Direction');
+                const runwayHeading = validateNumber(document.getElementById('runwayHeading').value, 'Runway Heading');
+                
+                // Validate ranges
+                if (windDirection < 0 || windDirection > 360) throw new Error('Wind Direction must be between 0-360 degrees');
+                if (runwayHeading < 0 || runwayHeading > 360) throw new Error('Runway Heading must be between 0-360 degrees');
+                
+                // Calculate angle difference
+                let angleDiff = Math.abs(windDirection - runwayHeading);
+                if (angleDiff > 180) {
+                    angleDiff = 360 - angleDiff;
+                }
+                
+                // Convert to radians for calculation
+                const angleRad = angleDiff * (Math.PI / 180);
+                
+                // Calculate components
+                const crosswind = windSpeed * Math.sin(angleRad);
+                const headwind = windSpeed * Math.cos(angleRad);
+                
+                // Determine if it's actually a tailwind
+                let headwindDirection = headwind;
+                if (angleDiff > 90) {
+                    headwindDirection = -Math.abs(headwind); // Tailwind (negative)
+                }
+                
+                document.getElementById('crosswindComponent').textContent = formatNumber(Math.abs(crosswind), 1);
+                document.getElementById('headwindComponent').textContent = 
+                    (headwindDirection >= 0 ? '+' : '') + formatNumber(headwindDirection, 1);
+                document.getElementById('angleDifference').textContent = formatNumber(angleDiff, 0) + '°';
+                
+                showResult(resultSection);
+                
+            } catch (error) {
+                hideResult(resultSection);
+                showError(errorElement, error.message);
+            }
+        });
+    </script>
+</body>
+</html>
